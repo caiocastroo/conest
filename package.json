@@ -1,0 +1,25 @@
+{
+  "name": "conest",
+  "version": "1.0.0",
+  "description": "Sistema para gestão de estoque no comércio de bens e serviços",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caiocastroo/conest.git"
+  },
+  "author": "Caio Castro",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/caiocastroo/conest/issues"
+  },
+  "homepage": "https://github.com/caiocastroo/conest#readme",
+  "devDependencies": {
+    "electron": "^33.0.2"
+  },
+  "dependencies": {
+    "mongoose": "^8.8.1"
+  }
+}
