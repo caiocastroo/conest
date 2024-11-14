@@ -22,8 +22,9 @@ const dbConnect = async () => {
 const conectar = async () => {
     if (isConnected === false) {
         try {
-            await mangoose.connect(url)
+            await mongoose.connect(url)
             isConnected = true //sinalizar que o banco esta conectado
+            console.log('Mongodb Conectado')
         } catch (error) {
             console.log(`Problema detectado: ${error}`)
         }
@@ -36,13 +37,15 @@ const conectar = async () => {
 const desconectar = async () => {
     if (isConnected === true) {
         try {
-            await mangoose.disconnect(url)
+            await mongoose.disconnect(url)
             isConnected = false //sinalizar que o banco esta conectado
+            console.log('Mongodb Desconectado')
         } catch (error) {
             console.log(`Problema detectado: ${error}`)
         }
     }
 
 }
+//exportar para o main as funções desejadas
+module.exports = {dbConnect, desconectar}
     
-}

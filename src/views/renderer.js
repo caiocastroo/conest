@@ -30,3 +30,13 @@ function obterData() {
 }
 
 document.getElementById('dataAtual').innerHTML = obterData()
+
+// icone de status do banco de dados 
+api.dbMensagem((event, message) =>{
+    //validação e troca do icone
+    if (message === "conectado") {
+        document.getElementById('iconDB').src = "../public/img/dbon.png"
+    } else {
+        document.getElementById('iconDB').src = "../public/img/dboff.png"
+    }
+})
