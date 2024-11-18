@@ -1,6 +1,4 @@
-@charset "UTF-8";
-
-/* Botões */
+/* botões */
 .button img {
     margin: 50px 15px 25px 15px;
     padding: 5px;
@@ -8,8 +6,8 @@
     cursor: pointer;
 }
 
-/*Botão Reset*/
-#btnReset{
+/* Botão reset */
+#btnReset {
     width: 50px;
     height: 50px;
     background-image: url('../img/clear.png');
@@ -18,9 +16,8 @@
     margin-left: 10px;
 }
 
-/*rodape*/
-
-footer{
+/* rodapé */
+footer {
     background-color: #007acc;
     width: 100%;
     height: 40px;
@@ -31,11 +28,11 @@ footer{
     bottom: 0;
 }
 
-footer p{
+footer p {
     color: #fff;
     margin: 0px 0px 0px 10px;
 }
 
-footer img{
+footer img {
     margin-right: 10px;
 }
