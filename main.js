@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, shell, ipcMain } = require('electron/main')
+const { app, BrowserWindow, Menu, shell, ipcMain, dialog} = require('electron/main')
 const path = require('node:path')
 
 // Importação do módulo de conexão
@@ -21,7 +21,8 @@ function createWindow() {
         }
     })
 
-    Menu.setApplicationMenu(Menu.buildFromTemplate(template))
+    //Menu personaliazdo( comentar para debugar)
+    //Menu.setApplicationMenu(Menu.buildFromTemplate(template))
 
     win.loadFile('./src/views/index.html')
 
@@ -79,7 +80,7 @@ function clientWindow() {
         client = new BrowserWindow({
             width: 800,
             height: 600,
-            autoHideMenuBar: true,
+           // autoHideMenuBar: true,
             parent: main,
             modal: true,
             webPreferences: {
@@ -215,7 +216,7 @@ const template = [
         submenu: [
             {
                 label: 'Repositório',
-                click: () => shell.openExternal('https://github.com/professorjosedeassis/conestv3')
+                click: () => shell.openExternal('https://github.com/caiocastroo/conest.git')
             },
             {
                 label: 'Sobre',
@@ -224,3 +225,35 @@ const template = [
         ]
     }
 ]
+
+//CRUD Create >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//Recebimento dos dados do formulário
+ipcMain.on('new-client', async (event, cliente) => {
+    //teste de recebimento dos dados  (Passo 2 - slide) Importante!
+    console.log(cliente)
+
+    //Passo 3 - slide (Cadastrar os dados no banco de dados)
+    try {
+        //Criar um novo objeto usando a classe modelo
+        const novoCliente = new clienteModel({
+            nomeClinete: cliente.nomeCli,
+            foneCliente: cliente.foneCli,
+            emailCliente: cliente.emailCli
+        })
+        //A linha usa a biblioteca mogoose para salvar
+        await novoCliente.save()
+
+        //Confirmção de cliente adicionado no banco
+        dialog.showMessageBox({
+            type: 'info',
+            title: "Aviso",
+            message: "Cliente adicionado com sucesso",
+            buttons: ['OK']
+        })
+        //Enviar uma resposta para o redenrizador resetar o form
+        event.reply('reset-form')
+
+    } catch (error) {
+        console.log(error)     
+    }
+})
