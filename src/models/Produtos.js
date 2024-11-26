@@ -7,13 +7,13 @@ const {model, schema, Schema} = require ('mongoose')
 
 //Crição da estrutura de dados ("tabela") que será usada no banco 
 const produtosSchema = new Schema ({
-    nomeProduto:{
+    nomeProdutos:{
         type: String
     },
-    precoProduto:{
+    precoProdutos:{
         type: String
     },
-    codigoProduto:{
+    codigoProdutos:{
         type: String
     }
 })
