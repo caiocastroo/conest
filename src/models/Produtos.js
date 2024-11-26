@@ -6,18 +6,18 @@
 const {model, schema, Schema} = require ('mongoose')
 
 //Crição da estrutura de dados ("tabela") que será usada no banco 
-const clientesSchema = new Schema ({
-    nomeCliente:{
+const produtosSchema = new Schema ({
+    nomeProduto:{
         type: String
     },
-    foneCliente:{
+    precoProduto:{
         type: String
     },
-    emailCliente:{
+    codigoProduto:{
         type: String
     }
 })
 
 //exportar para o main
 // Para modificar o nome da coleção ("tabela"), basta, modificar na a linha abaixo o rotulo 'Clientes', sempre iniciando com letra maiuscula
-module.exports = model('Clientes', clientesSchema)
+module.exports = model('Produtos', produtosSchema)
