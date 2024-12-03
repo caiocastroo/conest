@@ -1,51 +1,50 @@
 /**
- * Modulo de conexao com banco de dados
+ * Módulo de conexão com o banco de dados
  * Uso do mongoose
  */
 
 const mongoose = require('mongoose')
 
-//definir URL e autenticação do banco de dados e acrecentar ao final da url um nome para o banco de dados
+// definir a URL e autenticação do banco de dados (acrescentar ao final da url um nome para o banco de dados)
 const url = 'mongodb+srv://admin:123senac@clusterconest.wg44p.mongodb.net/dbconest'
 
-//ststus de conexão (icone de conexão)
+// status de conexão ("ícone de conexão")
 let isConnected = false
 
+// Só estabelecer uma conexão se não estiver conectado 
 const dbConnect = async () => {
     if (isConnected === false) {
-        await conectar()      
+        await conectar()
     }
 }
 
-//conectar
-
+// conectar
 const conectar = async () => {
     if (isConnected === false) {
         try {
+            // a linha abaixo abre a conexão com o MongoDB
             await mongoose.connect(url)
-            isConnected = true //sinalizar que o banco esta conectado
-            console.log('Mongodb Conectado')
+            isConnected = true //sinalizar que o banco está conectado
+            console.log("MongoDB conectado")
         } catch (error) {
             console.log(`Problema detectado: ${error}`)
         }
     }
-
 }
 
-//Desconecter
-
+// desconectar
 const desconectar = async () => {
     if (isConnected === true) {
         try {
+            // a linha abaixo encerra a conexão com o MongoDB
             await mongoose.disconnect(url)
-            isConnected = false //sinalizar que o banco esta conectado
-            console.log('Mongodb Desconectado')
+            isConnected = false //sinalizar que o banco não está conectado
+            console.log("MongoDB desconectado")
         } catch (error) {
             console.log(`Problema detectado: ${error}`)
         }
     }
-
 }
-//exportar para o main as funções desejadas
+
+// exportar para p main as funções desejadas
 module.exports = {dbConnect, desconectar}
-    

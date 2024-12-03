@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://viacep.com.br">
     <title>Conest - Fornecedores</title>
     <link rel="stylesheet" href="../public/css/bootstrap.min.css">
     <link rel="stylesheet" href="../public/css/style.css">
@@ -47,6 +47,51 @@
                 <label for="inputSiteSupplier" class="form-label">Site</label>
                 <input class="form-control" type="text" id="inputSiteSupplier" spellcheck="false" maxlength="50">
             </div>
+
+             <!-- CEP -->
+             <div class="col-md-4">
+                <label for="inputCepSupplier" class="form-label">CEP</label>
+                <input class="form-control" type="cep" id="inputCepSupplier" spellcheck="false" maxlength="50" onblur="buscarEndereco()">
+            </div>
+
+
+            <!-- LOGRADOURO-->
+            <div class="col-md-6">
+                <label for="inputLogradouroSupplier" class="form-label">Logradouro</label>
+                <input class="form-control" type="logradouro" id="inputLogradouroSupplier" spellcheck="false"
+                    maxlength="50">
+            </div>
+
+            <!-- BAIRRO-->
+            <div class="col-md-6">
+                <label for="inputBairroSupplier" class="form-label">Bairro</label>
+                <input class="form-control" type="bairro" id="inputBairroSupplier" spellcheck="false" maxlength="50">
+            </div>
+
+            <!-- CIDADE-->
+            <div class="col-md-4">
+                <label for="inputCidadeSupplier" class="form-label">Cidade</label>
+                <input class="form-control" type="text" id="inputCidadeSupplier" spellcheck="false" maxlength="50">
+            </div>
+
+             <!-- UF-->
+             <div class="col-md-1">
+                <label for="inputUfSupplier" class="form-label">UF</label>
+                <input class="form-control" type="text" id="inputUfSupplier" spellcheck="false" maxlength="50">
+            </div>
+
+            <!-- Numero-->
+            <div class="col-md-2">
+                <label for="inputNumeroSupplier" class="form-label">Número</label>
+                <input class="form-control" type="text" id="inputNumeroSupplier" spellcheck="false" maxlength="50">
+            </div>
+
+             <!--Complemento-->
+             <div class="col-md-5">
+                <label for="inputComplementoSupplier" class="form-label">Complemento</label>
+                <input class="form-control" type="text" id="inputComplementoSupplier" spellcheck="false" maxlength="50">
+            </div>
+
 
             <!-- Botões -->
             <div class="mt-5">

@@ -86,7 +86,7 @@ function clientWindow() {
     if (main) {
         client = new BrowserWindow({
             width: 800,
-            height: 600,
+            height:800,
            // autoHideMenuBar: true,
             parent: main,
             modal: true,
@@ -105,7 +105,7 @@ function supplierWindow() {
     if (main) {
         supplier = new BrowserWindow({
             width: 800,
-            height: 600,
+            height: 800,
             autoHideMenuBar: true,
             parent: main,
             modal: true,
@@ -124,7 +124,7 @@ function productWindow() {
     if (main) {
         product = new BrowserWindow({
             width: 800,
-            height: 600,
+            height: 800,
             autoHideMenuBar: true,
             parent: main,
             modal: true,
@@ -143,7 +143,7 @@ function reportWindow() {
     if (main) {
         report = new BrowserWindow({
             width: 800,
-            height: 600,
+            height: 800,
             autoHideMenuBar: true,
             parent: main,
             modal: true,
@@ -248,7 +248,15 @@ ipcMain.on('new-client', async (event, cliente) => {
         const novoCliente = new clienteModel({
             nomeCliente: cliente.nomeCli,
             foneCliente: cliente.foneCli,
-            emailCliente: cliente.emailCli
+            emailCliente: cliente.emailCli,
+            cepCliente: cliente.cepCli,
+            logradouroCliente: cliente.logradouroCli,
+            bairroCliente: cliente.bairroCli,
+            cidadeCliente: cliente.cidadeCli,
+            ufCliente: cliente.ufCli,
+            numeroCliente: cliente.numeroCli,
+            complementoCliente: cliente.complementoCli
+
         })
         //A linha usa a biblioteca mogoose para salvar
         await novoCliente.save()
@@ -285,7 +293,15 @@ ipcMain.on('new-supplier', async (event,fornecedores) => {
         const novoFornecedores = new fornecedorModel({
             nomeFornecedores: fornecedores.nomeFor,
             foneFornecedores: fornecedores.foneFor,
-            siteFornecedores: fornecedores.siteFor
+            siteFornecedores: fornecedores.siteFor,
+            cepFornecedores: fornecedores.cepFor,
+            logradouroFornecedores: fornecedores.logradouroFor,
+            bairroFornecedores: fornecedores.bairroFor,
+            cidadeFornecedores: fornecedores.cidadeFor,
+            ufFornecedores: fornecedores.ufFor,
+            numeroFornecedores: fornecedores.numeroFor,
+            complementoFornecedores: fornecedores.complementoFor
+
         })
         //A linha usa a biblioteca mogoose para salvar
         await novoFornecedores.save()
