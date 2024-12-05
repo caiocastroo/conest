@@ -10,9 +10,17 @@ contextBridge.exposeInMainWorld('api', {
     janelaFornecedores: () => ipcRenderer.send('open-supplier'),
     janelaProdutos: () => ipcRenderer.send('open-product'),
     janelaRelatorios: () => ipcRenderer.send('open-report'),
-    novoCliente: (cliente) => ipcRenderer.send('new-client', cliente),
     resetarFormulario: (args) => ipcRenderer.on('reset-form', args),
+    novoCliente: (cliente) => ipcRenderer.send('new-client', cliente),
+    buscarCliente: (cliNome) => ipcRenderer.send("search-client", cliNome),
+    buscarFornecedores: (forNome) => ipcRenderer.send("search-supplier", forNome),
+    buscarProdutos: (proNome) => ipcRenderer.send("search-product", proNome),
+    buscarCodigo: (proNome) => ipcRenderer.send("search-codigo", proNome),
     novoFornecedores: (fornecedores) => ipcRenderer.send('new-supplier', fornecedores),
-    novoProdutos: (produtos) => ipcRenderer.send('new-product', produtos)
-    
+    novoProdutos: (produtos) => ipcRenderer.send('new-product', produtos),
+    rendenizarCliente: (dadosCliente) => ipcRenderer.on('client-data', dadosCliente),
+    rendenizarFornecedores: (dadosFornededores) => ipcRenderer.on('supplier-data', dadosFornededores),
+    rendenizarProdutos: (dadosProdutos) => ipcRenderer.on('product-data', dadosProdutos),
+    rendenizarCodigo: (dadosProdutos) => ipcRenderer.on('codigo-data', dadosProdutos)
+
 })

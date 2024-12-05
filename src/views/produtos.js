@@ -3,7 +3,7 @@
  * clientes.html
  */
 
-
+let arrayProdutos = []
 
 //Crud Create >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -39,3 +39,57 @@ api.resetarFormulario((args)=>{
 })
 
 //Fim - Reset Form >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+// CRUD Read >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+function buscarProdutos() {
+    // Passo 1 (slide)
+    let proNome = document.getElementById('search-product').value
+    console.log(proNome) // Teste do passo 1
+    // Passo 2 (slide) - Enviar o pedido de busca do cliente ao main.js
+    api.buscarProdutos(proNome)
+    // Passo 5 - Recebimento 
+    api.rendenizarProdutos((event, dadosProdutos) => {
+        // Teste de recebimento dos dados do cliente
+        console.log(dadosProdutos)
+        // Passo 6 (slide) - Rendenização dos dados do cliente no formulário
+        const produtosRendenizado = JSON.parse(dadosProdutos)
+        arrayProdutos = produtosRendenizado
+        // teste para entendimento da lógica
+        console.log(arrayProdutos)
+        // Percorrer o array de clientes, extrair os dados e setar (preencher) os campos do formulário
+        arrayProdutos.forEach((p) => {
+            document.getElementById('inputProduct').value = p._id
+            document.getElementById('inputNameProduct').value = p.nomeProdutos
+            document.getElementById('inputPrecoProduct').value = p.precoProdutos
+            document.getElementById('inputCodigoProduct').value = p.codigoProdutos 
+        })
+    })
+}
+// Fim do CRUD Read <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+// CRUD Read >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+function buscarCodigo() {
+    // Passo 1 (slide)
+    let proNome = document.getElementById('search-codigo').value
+    console.log(proNome) // Teste do passo 1
+    // Passo 2 (slide) - Enviar o pedido de busca do cliente ao main.js
+    api.buscarCodigo(proNome)
+    // Passo 5 - Recebimento 
+    api.rendenizarCodigo((event, dadosProdutos) => {
+        // Teste de recebimento dos dados do cliente
+        console.log(dadosProdutos)
+        // Passo 6 (slide) - Rendenização dos dados do cliente no formulário
+        const produtosRendenizado = JSON.parse(dadosProdutos)
+        arrayProdutos = produtosRendenizado
+        // teste para entendimento da lógica
+        console.log(arrayProdutos)
+        // Percorrer o array de clientes, extrair os dados e setar (preencher) os campos do formulário
+        arrayProdutos.forEach((p) => {
+            document.getElementById('inputProduct').value = p._id
+            document.getElementById('inputNameProduct').value = p.nomeProdutos
+            document.getElementById('inputPrecoProduct').value = p.precoProdutos
+            document.getElementById('inputCodigoProduct').value = p.codigoProdutos 
+        })
+    })
+}
+// Fim do CRUD Read <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
