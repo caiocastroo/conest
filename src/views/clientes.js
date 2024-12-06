@@ -60,8 +60,8 @@ function buscarCliente() {
         // Teste de recebimento dos dados do cliente
         console.log(dadosCliente)
         // Passo 6 (slide) - Rendenização dos dados do cliente no formulário
-        const clienteRendenizado = JSON.parse(dadosCliente)
-        arrayCliente = clienteRendenizado
+        const clientesRendenizado = JSON.parse(dadosCliente)
+        arrayCliente = clientesRendenizado
         // teste para entendimento da lógica
         console.log(arrayCliente)
         // Percorrer o array de clientes, extrair os dados e setar (preencher) os campos do formulário
@@ -71,7 +71,7 @@ function buscarCliente() {
             document.getElementById('inputPhoneClient').value = c.foneCliente
             document.getElementById('inputEmailClient').value = c.emailCliente
             document.getElementById('inputCepClient').value = c.cepCliente
-            document.getElementById('inputLogradouroClient').value = c.logradouroCliente
+            document.getElementById('inputLogradouroClient').value =c.logradouroCliente
             document.getElementById('inputBairroClient').value = c.bairroCliente
             document.getElementById('inputCidadeClient').value = c.cidadeCliente
             document.getElementById('inputUfClient').value = c.ufCliente
@@ -85,6 +85,7 @@ function buscarCliente() {
 
 
 // Fim do CRUD Read <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 
 
 //Reset Form >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

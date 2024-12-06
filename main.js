@@ -408,8 +408,38 @@ ipcMain.on('search-supplier', async(event, forNome) => {
         }
     })
 
-    // CRUD Read >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-ipcMain.on('search-product', async(event, proNome) => {
+    ipcMain.on('new-product', async (event, produtos) => {
+        //teste de recebimento dos dados  (Passo 2 - slide) Importante!
+        console.log(produtos)
+
+        //Passo 3 - slide (Cadastrar os dados no banco de dados)
+        try {
+            //Criar um novo objeto usando a classe modelo
+            const novoProdutos = new produtosModel({
+                nomeProdutos: produtos.nomePro,
+                precoProdutos: produtos.precoPro,
+                codigoProdutos: produtos.codigoPro
+            })
+            //A linha usa a biblioteca mogoose para salvar
+            await novoProdutos.save()
+
+            //Confirmção de cliente adicionado no banco
+            dialog.showMessageBox({
+                type: 'info',
+                title: "Aviso",
+                message: "Produtos adicionado com sucesso",
+                buttons: ['OK']
+            })
+            //Enviar uma resposta para o redenrizador resetar o form
+            event.reply('reset-form')
+
+        } catch (error) {
+            console.log(error)
+        }
+    })
+
+// CRUD Read >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ipcMain.on('search-product', async (event, proNome) => {
     // teste de recebimento do nome di cliente a ser pesquisado (passo 2)
     console.log(proNome)
     // Passos 3 e 4 - Pesquisar no banco de dados o cliente pelo nome
@@ -417,37 +447,36 @@ ipcMain.on('search-product', async(event, proNome) => {
     // RegExp -> Filtro pelo nome do cliente 'i' insensitive (maiúsculo ou minúsculo)
     // Atenção: nomeCliente -> model | cliNome -> rendenizador
     try {
-    const dadosProdutos = await produtosModel.find({
-        nomeProdutos: new RegExp(proNome, 'i')
-    })  
-    console.log(dadosProdutos) // Teste dos passos 3 e 4 
-    // Passo 5 - slide -> enviar os dados do  cliente para o rendenizador
-    // Rendenizador (JSON.stringify converte para JSON)
-    event.reply('product-data', JSON.stringify(dadosProdutos))
+        const dadosProdutos = await produtosModel.find({
+            nomeProdutos: new RegExp(proNome, 'i')
+        })
+        console.log(dadosProdutos) // Teste dos passos 3 e 4 
+        // Passo 5 - slide -> enviar os dados do  cliente para o rendenizador
+        // Rendenizador (JSON.stringify converte para JSON)
+        event.reply('product-data', JSON.stringify(dadosProdutos))
 
     } catch (error) {
         console.log(error)
     }
 })
-
-    // CRUD Read >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    ipcMain.on('search-codigo', async(event, proNome) => {
-        // teste de recebimento do nome di cliente a ser pesquisado (passo 2)
-        console.log(proNome)
-        // Passos 3 e 4 - Pesquisar no banco de dados o cliente pelo nome
-        // find() -> Buscar no banco de dados (mongoose)
-        // RegExp -> Filtro pelo nome do cliente 'i' insensitive (maiúsculo ou minúsculo)
-        // Atenção: nomeCliente -> model | cliNome -> rendenizador
-        try {
+// CRUD Read >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ipcMain.on('search-codigo', async (event, proCodigo) => {
+    // teste de recebimento do nome di cliente a ser pesquisado (passo 2)
+    console.log(proCodigo)
+    // Passos 3 e 4 - Pesquisar no banco de dados o cliente pelo nome
+    // find() -> Buscar no banco de dados (mongoose)
+    // RegExp -> Filtro pelo nome do cliente 'i' insensitive (maiúsculo ou minúsculo)
+    // Atenção: nomeCliente -> model | cliNome -> rendenizador
+    try {
         const dadosProdutos = await produtosModel.find({
-            nomeProdutos: new RegExp(proNome, 'i')
-        })  
+            codigoProdutos: new RegExp(proCodigo, 'i')
+        })
         console.log(dadosProdutos) // Teste dos passos 3 e 4 
         // Passo 5 - slide -> enviar os dados do  cliente para o rendenizador
         // Rendenizador (JSON.stringify converte para JSON)
         event.reply('codigo-data', JSON.stringify(dadosProdutos))
-    
-        } catch (error) {
-            console.log(error)
-        }
-    })
+
+    } catch (error) {
+        console.log(error)
+    }
+})

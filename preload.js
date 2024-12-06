@@ -12,15 +12,14 @@ contextBridge.exposeInMainWorld('api', {
     janelaRelatorios: () => ipcRenderer.send('open-report'),
     resetarFormulario: (args) => ipcRenderer.on('reset-form', args),
     novoCliente: (cliente) => ipcRenderer.send('new-client', cliente),
+    novoFornecedores: (fornecedores) => ipcRenderer.send('new-supplier', fornecedores),
     buscarCliente: (cliNome) => ipcRenderer.send("search-client", cliNome),
     buscarFornecedores: (forNome) => ipcRenderer.send("search-supplier", forNome),
     buscarProdutos: (proNome) => ipcRenderer.send("search-product", proNome),
-    buscarCodigo: (proNome) => ipcRenderer.send("search-codigo", proNome),
-    novoFornecedores: (fornecedores) => ipcRenderer.send('new-supplier', fornecedores),
+    buscarCodigo: (proCodigo) => ipcRenderer.send("search-codigo", proCodigo),
     novoProdutos: (produtos) => ipcRenderer.send('new-product', produtos),
     rendenizarCliente: (dadosCliente) => ipcRenderer.on('client-data', dadosCliente),
     rendenizarFornecedores: (dadosFornededores) => ipcRenderer.on('supplier-data', dadosFornededores),
     rendenizarProdutos: (dadosProdutos) => ipcRenderer.on('product-data', dadosProdutos),
-    rendenizarCodigo: (dadosProdutos) => ipcRenderer.on('codigo-data', dadosProdutos)
-
+    rendenizarCodigos: (dadosCodigos) => ipcRenderer.on('codigo-data', dadosCodigos)
 })
